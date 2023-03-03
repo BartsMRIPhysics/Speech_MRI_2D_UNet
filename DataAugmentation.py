@@ -119,6 +119,41 @@ class RandomCrop(object):
         return {'image_frame': image_frame, 'mask_frame': mask_frame}
     
 
+# Code to rescale images and corresponding GT segmentations
+class Rescale(object):
+    
+    # Rescale the image and mask in a sample to a given size
+    # Arg:
+    # 1) output_size (int or tuple) the desired output size. If 
+    #    int, the size of the smaller edge is matched to output_size 
+    #    while keeping the aspect ratio the same
+
+    def __init__(self, output_size):
+        assert isinstance(output_size, (int, tuple))
+        self.output_size = output_size
+
+    def __call__(self, sample):
+        image_frame, mask_frame = sample['image_frame'], sample['mask_frame']
+
+        h, w = image_frame.shape
+        if isinstance(self.output_size, int):
+            if h > w:
+                new_h, new_w = self.output_size * h / w, self.output_size
+            else:
+                new_h, new_w = self.output_size, self.output_size * w / h
+        else:
+            new_h, new_w = self.output_size
+
+        # Convert mask_frame to correct data type
+        mask_frame = float64(mask_frame)
+
+        # Resize image_frame and mask_frame
+        image_frame = resize(image_frame, (new_h, new_w), order = 0) # 0: nearest neighbour
+        mask_frame = resize(mask_frame, (new_h, new_w), order = 0) # 0: nearest neighbour)
+
+        return {'image_frame': image_frame, 'mask_frame': mask_frame}
+
+
 # Code to translate images and corresponding GT segmentations
 class RandomTranslation(object):
     

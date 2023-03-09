@@ -2,14 +2,14 @@
 # Code to normalise the speech magnetic resonance images
 
 # Author: Matthieu Ruthven (matthieuruthven@nhs.net)
-# Last modified: 3rd March 2023
+# Last modified: 9th March 2023
 
 # Import required modules
 import argparse
 from pathlib import Path
 import os
 from pydicom import dcmread
-from numpy import zeros, min, max
+from numpy import zeros, min, max, single
 from scipy.io import savemat
 
 def main(data_dir, subj_id_list):
@@ -21,8 +21,9 @@ def main(data_dir, subj_id_list):
         print(f'Normalising images of subject {subj_id}')
 
         # Create list of images in the Subject<ID> subfolder
-        img_list = [data_dir / 'MRI_SSFP_10fps' / f'Subject{subj_id}' / g for g in os.listdir(data_dir / 'MRI_SSFP_10fps' / f'Subject{subj_id}') if (g.endswith('.dcm') and g.startswith('image'))]
+        img_list = [int(g[6:-4]) for g in os.listdir(data_dir / 'MRI_SSFP_10fps' / f'Subject{subj_id}') if (g.endswith('.dcm') and g.startswith('image'))]
         img_list.sort()
+        img_list = [data_dir / 'MRI_SSFP_10fps'/ f'Subject{subj_id}' / f'image_{g}.dcm' for g in img_list]
 
         # Load first image
         img = dcmread(img_list[0]).pixel_array
@@ -102,6 +103,9 @@ if __name__ == "__main__":
     
     # Parse arguments
     args = parser.parse_args()
+
+    # Check if data_dir exists
+    assert os.path.exists(args.data_dir), 'Please specify the absolute path to the folder containing all the data using the --data_dir argument to "NormaliseImages.py".'
 
     # Run main function
     main(args.data_dir, args.subj_id_list)

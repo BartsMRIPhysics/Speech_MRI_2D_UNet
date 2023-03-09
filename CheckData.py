@@ -128,5 +128,8 @@ if __name__ == "__main__":
     # Parse arguments
     args = parser.parse_args()
 
+    # Check if data_dir exists
+    assert os.path.exists(args.data_dir), 'Please specify the absolute path to the folder containing all the data using the --data_dir argument to "CheckData.py".'
+
     # Run main function
     main(args.data_dir, args.subj_id_list)

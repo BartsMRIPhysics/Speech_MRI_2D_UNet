@@ -48,6 +48,7 @@ By default, CheckData.py assumes that the folder containing the dataset is calle
 python CheckData.py --data_dir /path/to/folder --subj_id_list [1,2,4]
 ```
 In the example above, only the data of subjects 1, 2 and 4 would be checked.
+
 7. Enter the following command to normalise the images of the Barts Speech MRI dataset:
 ```
 python NormaliseImages.py

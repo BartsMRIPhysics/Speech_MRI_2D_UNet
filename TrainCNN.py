@@ -452,8 +452,6 @@ if __name__ == "__main__":
     # If required, modify args.val_subj
     if isinstance(args.val_subj, int):
         args.val_subj = [args.val_subj]
-    elif args.val_subj == [-1]:
-        args.val_subj = []
 
     # Run main function
     main(args.data_dir, args.train_subj, args.val_subj, args.n_classes, args.epochs, args.l_rate, args.mb_size)

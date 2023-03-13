@@ -5,7 +5,7 @@
 # tract during speech
 
 # Author: Matthieu Ruthven (matthieuruthven@nhs.net)
-# Last modified: 9th March 2023
+# Last modified: 13th March 2023
 
 # Import required modules
 import os
@@ -21,7 +21,6 @@ import torch.nn.functional as F
 from DataAugmentation import ToTensor, RotateCropAndPad, RandomCrop, Rescale, RandomTranslation, RescaleAndPad
 from SpeechMRIDataset import SpeechMRIDataset
 from UNet_n_classes import UNet_n_classes
-import matplotlib.pyplot as plt
 import pandas as pd
 from monai.metrics import DiceMetric
 
@@ -221,29 +220,6 @@ def main(data_dir, train_subj, val_subj, n_classes, epochs, l_rate, mb_size):
             unet_inputs = speech_data['image_frame'].to(device)
             labels = speech_data['mask_frame'].to(device)
 
-            '''
-            # Show images and corresponding GT segmentations
-            fig, ax = plt.subplots(2, 4)
-            ax[0, 0].imshow(torch.squeeze(speech_data['image_frame'][0, ...]))
-            ax[0, 0].axis('off')
-            ax[1, 0].imshow(speech_data['mask_frame'][0, ...])
-            ax[1, 0].axis('off')
-            ax[0, 1].imshow(torch.squeeze(speech_data['image_frame'][1, ...]))
-            ax[0, 1].axis('off')
-            ax[1, 1].imshow(speech_data['mask_frame'][1, ...])
-            ax[1, 1].axis('off')
-            ax[0, 2].imshow(torch.squeeze(speech_data['image_frame'][2, ...]))
-            ax[0, 2].axis('off')
-            ax[1, 2].imshow(speech_data['mask_frame'][2, ...])
-            ax[1, 2].axis('off')
-            ax[0, 3].imshow(torch.squeeze(speech_data['image_frame'][3, ...]))
-            ax[0, 3].axis('off')
-            ax[1, 3].imshow(speech_data['mask_frame'][3, ...])
-            ax[1, 3].axis('off')
-            plt.show()
-            plt.close('all')
-            '''
-
             # Zero the parameter gradients
             optimizer.zero_grad()
 
@@ -412,14 +388,16 @@ if __name__ == "__main__":
     parser.add_argument(
         '--train_subj',
         help='A list of ID(s) of subjects to use in the training dataset.',
-        type=list,
-        default=[2,3,4]
+        type=int,
+        default=1,
+        nargs='*'
         )
     parser.add_argument(
         '--val_subj',
         help='A list of ID(s) of subjects to use in the validation dataset.',
-        type=list,
-        default=[1]
+        type=int,
+        default=2,
+        nargs='*'
         )
     parser.add_argument(
         '--n_classes',
@@ -467,5 +445,9 @@ if __name__ == "__main__":
     # Check if images have been normalised
     assert os.path.exists(args.data_dir / 'Normalised_Images'), 'Have the images been normalised? This can be done using "NormaliseImages.py"'
     
+    # If required, modify args.val_subj
+    if args.val_subj == [-1]:
+        args.val_subj = []
+
     # Run main function
     main(args.data_dir, args.train_subj, args.val_subj, args.n_classes, args.epochs, args.l_rate, args.mb_size)

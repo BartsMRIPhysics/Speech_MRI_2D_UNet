@@ -445,8 +445,14 @@ if __name__ == "__main__":
     # Check if images have been normalised
     assert os.path.exists(args.data_dir / 'Normalised_Images'), 'Have the images been normalised? This can be done using "NormaliseImages.py"'
     
+    # If required, modify args.train_subj
+    if isinstance(args.train_subj, int):
+        args.train_subj = [args.train_subj]
+
     # If required, modify args.val_subj
-    if args.val_subj == [-1]:
+    if isinstance(args.val_subj, int):
+        args.val_subj = [args.val_subj]
+    elif args.val_subj == [-1]:
         args.val_subj = []
 
     # Run main function

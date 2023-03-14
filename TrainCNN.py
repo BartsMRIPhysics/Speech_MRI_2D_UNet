@@ -446,7 +446,6 @@ if __name__ == "__main__":
     assert os.path.exists(args.data_dir / 'Normalised_Images'), 'Have the images been normalised? This can be done using "NormaliseImages.py".'
     
     # Check that args.train_subj is not empty
-    print(args.train_subj)
     assert args.train_subj, f'Please specify the IDs of the subjects whose datasets should be included in the training dataset using the --train_subj argument to "TrainCNN.py".'
     
     # If required, modify args.train_subj

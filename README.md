@@ -57,7 +57,7 @@ By default, NormaliseImages.py assumes that the folder containing the dataset is
 ```
 python NormaliseImages.py --data_dir /path/to/folder --subj_id_list 3 5
 ```
-In the example above, only the data of subjects 3 and 5 would be checked.
+In the example above, only the images of subjects 3 and 5 would be normalised.
 
 ## Training a segmentation CNN from scratch
 Enter the following command to train a CNN to segment 2D MR images of the vocal tract from scratch:

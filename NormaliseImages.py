@@ -2,7 +2,7 @@
 # Code to normalise the speech magnetic resonance images
 
 # Author: Matthieu Ruthven (matthieuruthven@nhs.net)
-# Last modified: 9th March 2023
+# Last modified: 14th March 2023
 
 # Import required modules
 import argparse
@@ -97,8 +97,9 @@ if __name__ == "__main__":
     parser.add_argument(
         '--subj_id_list',
         help='List of IDs of subjects whose images should be normalised.',
-        default=[1, 2, 3, 4, 5],
-        type=list
+        default=1,
+        type=int,
+        nargs='*'
         )
     
     # Parse arguments
@@ -106,6 +107,13 @@ if __name__ == "__main__":
 
     # Check if data_dir exists
     assert os.path.exists(args.data_dir), 'Please specify the absolute path to the folder containing all the data using the --data_dir argument to "NormaliseImages.py".'
+
+    # Check that args.subj_id_list is not empty
+    assert args.subj_id_list, f'Please specify the IDs of the subjects whose datasets should be checked using the --subj_id_list argument to "NormaliseImages.py".'
+    
+    # If required, modify args.subj_id_list
+    if isinstance(args.subj_id_list, int):
+        args.subj_id_list = [args.subj_id_list]
 
     # Run main function
     main(args.data_dir, args.subj_id_list)

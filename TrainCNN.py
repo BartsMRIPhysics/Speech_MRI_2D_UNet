@@ -5,7 +5,7 @@
 # tract during speech
 
 # Author: Matthieu Ruthven (matthieuruthven@nhs.net)
-# Last modified: 13th March 2023
+# Last modified: 14th March 2023
 
 # Import required modules
 import os
@@ -440,10 +440,14 @@ if __name__ == "__main__":
     os.environ['CUDA_VISIBLE_DEVICES'] = str(args.gpu_id)
 
     # Check if data_dir exists
-    assert os.path.exists(args.data_dir), 'Please specify the absolute path to the folder containing all the data using the --data_dir argument to "CheckData.py".'
+    assert os.path.exists(args.data_dir), 'Please specify the absolute path to the folder containing all the data using the --data_dir argument to "TrainCNN.py".'
 
     # Check if images have been normalised
-    assert os.path.exists(args.data_dir / 'Normalised_Images'), 'Have the images been normalised? This can be done using "NormaliseImages.py"'
+    assert os.path.exists(args.data_dir / 'Normalised_Images'), 'Have the images been normalised? This can be done using "NormaliseImages.py".'
+    
+    # Check that args.train_subj is not empty
+    print(args.train_subj)
+    assert args.train_subj, f'Please specify the IDs of the subjects whose datasets should be included in the training dataset using the --train_subj argument to "TrainCNN.py".'
     
     # If required, modify args.train_subj
     if isinstance(args.train_subj, int):

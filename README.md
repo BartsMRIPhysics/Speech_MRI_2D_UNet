@@ -12,11 +12,13 @@ This repository contains Python code to perform deep-learning-based segmentation
 
 ## Setting up
 
-1. Download this repository.
+1. Download the repository.
 
-2. Open a new terminal and navigate to the folder containing the files from this repository.
+2. If using the Barts Speech MRI Dataset, download the dataset: https://zenodo.org/record/7595164
 
-3. Enter the following command to create a conda environment and install the Python packages required to run the code:
+4. Open a new terminal and navigate to the folder containing the files from this repository.
+
+5. Enter the following command to create a conda environment and install the Python packages required to run the code:
 ```
 conda env create -f environment.yml
 ```
@@ -85,3 +87,10 @@ In the example above:
 - Learning rate to use in training: 0.01
 - Mini-batch size to use in training: 8
 - ID of GPU to use in training: 1
+
+The network was trained using the following parameters using five-fold cross validation with a different 4 subjects used in the training dataset each time:
+- epochs: 200
+- Learning rate: 0.0003
+- Mini-batch size: 4
+The pre-trained weights for each network can be found at:
+https://drive.google.com/drive/folders/1f9OLQkovyrQJv1TCNO5k2peT2HJYt5Nb?usp=sharing

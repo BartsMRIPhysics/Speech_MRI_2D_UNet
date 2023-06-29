@@ -88,6 +88,8 @@ In the example above:
 - Mini-batch size to use in training: 8
 - ID of GPU to use in training: 1
 
+## Pre-trained weights
+
 The network was trained using the following parameters using five-fold cross validation with a different 4 subjects used in the training dataset each time:
 - epochs: 200
 - Learning rate: 0.0003

@@ -92,4 +92,5 @@ The network was trained using the following parameters using five-fold cross val
 - epochs: 200
 - Learning rate: 0.0003
 - Mini-batch size: 4
+
 The [pre-trained weights](https://drive.google.com/drive/folders/1f9OLQkovyrQJv1TCNO5k2peT2HJYt5Nb?usp=sharing) for each network can be downloaded.

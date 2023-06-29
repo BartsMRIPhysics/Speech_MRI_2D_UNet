@@ -92,6 +92,7 @@ The network was trained using the following parameters using five-fold cross val
 - epochs: 200
 - Learning rate: 0.0003
 - Mini-batch size: 4
+
 e.g. using the following command:
 ```
 python TrainCNN.py --train_subj 1 2 3 4 --val_subj

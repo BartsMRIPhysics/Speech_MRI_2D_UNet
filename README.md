@@ -14,7 +14,7 @@ This repository contains Python code to perform deep-learning-based segmentation
 
 1. Download the repository.
 
-2. If using the Barts Speech MRI Dataset, download the [dataset](https://zenodo.org/record/7595164).
+2. If using the Barts Speech MRI Dataset, download the [Dataset](https://zenodo.org/record/7595164).
 
 3. Open a new terminal and navigate to the folder containing the files from this repository.
 
@@ -92,5 +92,8 @@ The network was trained using the following parameters using five-fold cross val
 - epochs: 200
 - Learning rate: 0.0003
 - Mini-batch size: 4
-
+e.g. using the following command:
+```
+python TrainCNN.py --train_subj 1 2 3 4 --val_subj
+```
 The [pre-trained weights](https://drive.google.com/drive/folders/1f9OLQkovyrQJv1TCNO5k2peT2HJYt5Nb?usp=sharing) for each network can be downloaded.

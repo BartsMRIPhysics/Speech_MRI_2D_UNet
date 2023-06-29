@@ -90,7 +90,7 @@ In the example above:
 
 ## Pre-trained weights
 
-The network was trained using the following parameters using five-fold cross validation with a different 4 subjects used in the training dataset each time:
+The network was trained using the following parameters using five-fold cross validation with a different 4 subjects used in the training dataset each time, and the weights were saved:
 - epochs: 200
 - Learning rate: 0.0003
 - Mini-batch size: 4
@@ -99,4 +99,4 @@ e.g. using the following command:
 ```
 python TrainCNN.py --train_subj 1 2 3 4 --val_subj
 ```
-The [pre-trained weights](https://drive.google.com/drive/folders/1f9OLQkovyrQJv1TCNO5k2peT2HJYt5Nb?usp=sharing) for each network can be downloaded.
+The pre-trained weights for each network can be downloaded [here](https://drive.google.com/drive/folders/1f9OLQkovyrQJv1TCNO5k2peT2HJYt5Nb?usp=sharing).

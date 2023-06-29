@@ -14,19 +14,20 @@ This repository contains Python code to perform deep-learning-based segmentation
 
 1. Download the repository.
 
-2. If using the Barts Speech MRI Dataset, download the dataset: https://zenodo.org/record/7595164
+2. If using the Barts Speech MRI Dataset, download the dataset:
+https://zenodo.org/record/7595164
 
-4. Open a new terminal and navigate to the folder containing the files from this repository.
+3. Open a new terminal and navigate to the folder containing the files from this repository.
 
-5. Enter the following command to create a conda environment and install the Python packages required to run the code:
+4. Enter the following command to create a conda environment and install the Python packages required to run the code:
 ```
 conda env create -f environment.yml
 ```
-4. Enter the following command to activate the conda environment
+5. Enter the following command to activate the conda environment
 ```
 conda activate SpeechMRISeg
 ```
-5. If using the Barts Speech MRI dataset, add the dataset to the folder containing the files from this repository:
+6. If using the Barts Speech MRI dataset, add the dataset to the folder containing the files from this repository:
 ```
 .
 ├── data
@@ -41,7 +42,7 @@ conda activate SpeechMRISeg
 ├── TrainCNN.py
 └── UNet_n_classes.py
 ```
-6. Enter the following command to check that the Barts Speech MRI dataset is correctly organised and is not corrupted:
+7. Enter the following command to check that the Barts Speech MRI dataset is correctly organised and is not corrupted:
 ```
 python CheckData.py
 ```
@@ -51,7 +52,7 @@ python CheckData.py --data_dir /path/to/folder --subj_id_list 1 2 4
 ```
 In the example above, only the data of subjects 1, 2 and 4 would be checked.
 
-7. Enter the following command to normalise the images of the Barts Speech MRI dataset:
+8. Enter the following command to normalise the images of the Barts Speech MRI dataset:
 ```
 python NormaliseImages.py
 ```
